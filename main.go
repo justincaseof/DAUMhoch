@@ -97,11 +97,24 @@ func main() {
 				fmt.Printf(" --> Response (%d bytes):\t %x \n", readByteCount, data)
 				if readByteCount == 19 {
 					if data[0] == 0x40 {
+						fmt.Println(" --> address: ", data[1])
+
 						var lala RunDatenResponsePayload
 						data := lala.parse(data[2:])
-						dataWeb := data.encode()
-						fmt.Println(" --> Data: ", dataWeb)
-						log2.WithFields(log2.Fields{"data": dataWeb}).Info("Data!")
+						fmt.Println("--------------------------------")
+						fmt.Println("Program: ", data.Program)
+						fmt.Println("Person: ", data.Person)
+						fmt.Println("Cycling: ", data.Cycling)
+						fmt.Println("PowerWatt: ", data.PowerWatt)
+						fmt.Println("RPM: ", data.RPM)
+						fmt.Println("SpeedKMH: ", data.SpeedKMH)
+						fmt.Println("DistanceMeters: ", data.DistanceMeters)
+						fmt.Println("PedalingTimeSeconds: ", data.PedalingTimeSeconds)
+						fmt.Println("EnergyJoules: ", data.EnergyJoules)
+						fmt.Println("Pulse: ", data.Pulse)
+						fmt.Println("Gear: ", data.Gear)
+						fmt.Println("EnergyJoulesReal: ", data.EnergyJoulesReal)
+
 					}
 				}
 
@@ -111,10 +124,9 @@ func main() {
 			}
 		default:
 			panic("illegal state")
-
 		}
 
-		time.Sleep(1 * time.Second)
+		time.Sleep(3 * time.Second)
 	}
 
 }
