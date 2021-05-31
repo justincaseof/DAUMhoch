@@ -42,10 +42,13 @@ func (data RunDatenResponsePayload) parse(responsebytes []byte) RunDaten {
 	// check: OK
 	result.SpeedKMH = int(responsebytes[5])
 
+	// wrong somehow
 	result.DistanceMeters = (int(responsebytes[6])<<8 + int(responsebytes[7])) * 100
 
+	// wrong somehow
 	result.PedalingTimeSeconds = int(responsebytes[8])<<8 + int(responsebytes[9])
 
+	// wrong somehow
 	result.EnergyJoules = int(responsebytes[10])<<8 + int(responsebytes[11])
 
 	// check: OK
